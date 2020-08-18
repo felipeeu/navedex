@@ -10,7 +10,7 @@ const Container = styled.div`
   left: 344px;
   right: 344px;
   bottom: 277px;
-  background-color: pink;
+
 `;
 const BackIcon = styled.div`
   position: absolute;
