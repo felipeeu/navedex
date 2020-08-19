@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import naveIcon from "../assets/images/nave_icon.svg";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   position: absolute;
@@ -36,17 +37,26 @@ const ButtonContainer = styled.div`
   top: 30px;
 `;
 
-const Header = () => (
-  <>
+const Header = () => {
+  let history = useHistory();
+
+  return (
     <Container>
       <ImageContainer>
         <img src={naveIcon} />
       </ImageContainer>
       <ButtonContainer>
-        <ExitButton>Sair</ExitButton>
+        <ExitButton
+          onClick={() => {
+            localStorage.removeItem("token");
+            history.push("/");
+          }}
+        >
+          Sair
+        </ExitButton>
       </ButtonContainer>
     </Container>
-  </>
-);
+  );
+};
 
 export default Header;

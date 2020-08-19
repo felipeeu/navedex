@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import closeIcon from "../assets/images/close_icon.svg";
-import IconButton from "../components/IconButton"
+import IconButton from "../components/IconButton";
+import { CloseIcon } from "./NaverCard";
 
 const ModalContainer = styled.div`
   position: absolute;
@@ -10,13 +11,6 @@ const ModalContainer = styled.div`
   left: 25%;
   top: 265px;
   background: pink;
-`;
-const IconContainer = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  background: none;
 `;
 const Title = styled.span`
   position: absolute;
@@ -48,12 +42,11 @@ const Body = styled.span`
   color: #212121;
 `;
 
-const ModalAdvise = ({text , body}) => (
+const ModalAdvise = ({ text, body }) => (
   <ModalContainer>
-    {/* <IconContainer>
-      <img src={closeIcon} />
-    </IconContainer> */}
-    <IconButton icon ={closeIcon}/>
+    <CloseIcon>
+      <IconButton icon={closeIcon} />
+    </CloseIcon>
     <Title>Naver Criado</Title>
     <Body>Naver criado com sucesso!</Body>
   </ModalContainer>

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import naveIcon from "../assets/images/nave_icon.svg";
+import { loginUser } from "../naverAPI";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   position: absolute;
@@ -56,22 +58,63 @@ const EmailText = styled(Text)`
 const PasswordText = styled(Text)`
   top: 234px;
 `;
-const Login = () => (
-  <>
+
+const EnterButton = styled.button`
+  position: absolute;
+  bottom: 40px;
+  right: 32px;
+  width: 384px;
+  height: 40px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  /* identical to box height, or 171% */
+
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+  background: #212121;
+`;
+
+const Login = () => {
+  let history = useHistory();
+  const [loginData, setLoginData] = React.useState({});
+
+  const handleLogin = () => {
+    loginUser(loginData)
+      .then(response => response)
+      .catch(e => console.log(e));
+    setTimeout(() => history.push("/"), 1500);
+  };
+
+  return (
     <Container>
       <NaveIcon>
-        <img src={naveIcon} />
+        <img src={naveIcon} alt="logo" />
       </NaveIcon>
       <EmailText>Email</EmailText>
       <EmailContainer>
-        <Input />
+        <Input
+          placeholder="E-mail"
+          onChange={e => setLoginData({ ...loginData, email: e.target.value })}
+        />
       </EmailContainer>
       <PasswordText>Password</PasswordText>
       <PasswordContainer>
-        <Input />
+        <Input
+          placeholder="Senha"
+          onChange={e =>
+            setLoginData({ ...loginData, password: e.target.value })
+          }
+          type="password"
+        />
       </PasswordContainer>
+      <EnterButton onClick={handleLogin}>Entrar</EnterButton>
     </Container>
-  </>
-);
+  );
+};
 
 export default Login;

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import naveIcon from "../assets/images/nave_icon.svg";
 import Navers from "../components/Navers";
 import { getNavers } from "../naverAPI";
 import Header from "../components/Header";
+
 
 const Title = styled.span`
   position: absolute;
@@ -40,12 +40,15 @@ const NaversContainer = styled.div`
 `;
 
 const Home = () => {
+
   const [naversData, sertNaversData] = React.useState([]);
   React.useEffect(() => {
     getNavers()
       .then(response => sertNaversData(response.data))
       .catch(e => console.log(e));
-  });
+  },[]);
+
+ 
 
   return (
     <>
