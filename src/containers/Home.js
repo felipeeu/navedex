@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Navers from "../components/Navers";
-import { getNavers } from "../naverAPI";
+import { getNavers, deleteNaver, updateNaver } from "../naverAPI";
 import Header from "../components/Header";
-
+import ModalDelete from "../components/ModalDelete";
 
 const Title = styled.span`
   position: absolute;
@@ -40,24 +40,48 @@ const NaversContainer = styled.div`
 `;
 
 const Home = () => {
+  const [naversData, setNaversData] = React.useState([]);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [naverId, setNaverId] = React.useState("");
 
-  const [naversData, sertNaversData] = React.useState([]);
   React.useEffect(() => {
     getNavers()
-      .then(response => sertNaversData(response.data))
+      .then(response => setNaversData(response.data))
       .catch(e => console.log(e));
-  },[]);
+  }, []);
 
- 
+  const confirmDelete = id => {
+    setNaverId(id);
+    setModalOpen(true);
+  };
+
+  const deleteConfirmed = id => {
+    let filteredNavers = naversData.filter(naver => naver.id !== naverId);
+
+    deleteNaver(id).then(response =>
+      response ? setNaversData(filteredNavers) : setNaversData(naversData)
+    );
+    setModalOpen(false);
+  };
 
   return (
     <>
       <Header />
+
+      {modalOpen ? (
+        <ModalDelete
+          setModalOpen={setModalOpen}
+          handleDelete={deleteConfirmed}
+          naverId={naverId}
+        />
+      ) : (
+        <></>
+      )}
       <MajorContainer>
         <Title>Navers</Title>
         <CreateNaverButton>Adicionar Naver</CreateNaverButton>
         <NaversContainer>
-          <Navers navers={naversData} />
+          <Navers handleDelete={confirmDelete} navers={naversData} />
         </NaversContainer>
       </MajorContainer>
     </>

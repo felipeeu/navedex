@@ -43,7 +43,7 @@ const Header = () => {
   return (
     <Container>
       <ImageContainer>
-        <img src={naveIcon} />
+        <img src={naveIcon} alt= "logo" />
       </ImageContainer>
       <ButtonContainer>
         <ExitButton

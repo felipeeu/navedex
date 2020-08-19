@@ -6,7 +6,7 @@ import {
   Redirect
 } from "react-router-dom";
 import Login from "./Login";
-import TestingPages from "../components/NaverCard"; // Only for view components when creating
+import TestingPages from "../components/ModalDelete"; // Only for view components when creating
 import Home from "./Home";
 
 export default function AuthExample() {
@@ -14,8 +14,8 @@ export default function AuthExample() {
     <Router>
       <div>
         <Switch>
-          <Route path="/public">
-            <TestingPages /> 
+          <Route path="/test">
+            <TestingPages navers = { [{name:"Felipe Domingues"} , {name: "Manuela"}]} /> 
           </Route>
           <Route path="/login">
             <Login />

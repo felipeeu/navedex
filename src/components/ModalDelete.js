@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-
 const ModalContainer = styled.div`
+  z-index: 10;
   position: absolute;
   width: 592px;
   height: 233px;
@@ -57,7 +57,7 @@ const DeleteButton = styled(GenericButton)`
   position: absolute;
   bottom: 32px;
   left: 384px;
-  right:32px;
+  right: 32px;
   color: #ffffff;
   background: #212121;
 `;
@@ -66,16 +66,16 @@ const CancelButton = styled(GenericButton)`
   position: absolute;
   bottom: 32px;
   left: 184px;
-  right:232px;
+  right: 232px;
   border: 1px solid #212121;
 `;
 
-const ModalDelete = ({ text, body }) => (
+const ModalDelete = ({ setModalOpen, naverId, handleDelete }) => (
   <ModalContainer>
     <Title>Excluir Naver </Title>
     <Body>Tem Certeza que deseja excluir esse Naver ?</Body>
-    <DeleteButton>Excluir</DeleteButton>
-    <CancelButton>Cancelar</CancelButton>
+    <DeleteButton onClick={() => handleDelete(naverId)}>Excluir</DeleteButton>
+    <CancelButton onClick={() => setModalOpen(false)}>Cancelar</CancelButton>
   </ModalContainer>
 );
 

@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { createNaver } from "../naverAPI";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   position: absolute;
   top: 68px;
   width: 100%;
   height: auto;
-  
 `;
 const CurrentInput = styled.input`
   width: 280px;
@@ -18,7 +19,7 @@ const InputsContainer = styled.div`
   justify-items: center;
   grid-row-gap: 32px;
 `;
-const InputName = styled.span`
+const InputLabel = styled.span`
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -54,32 +55,65 @@ const TextButton = styled.span`
   color: #ffffff;
 `;
 
-const Input = ({ label }) => (
+const Input = ({ label, onChange }) => (
   <InputWrapper>
-    <InputName>{label}</InputName>
-    <CurrentInput />
+    <InputLabel>{label}</InputLabel>
+    <CurrentInput onChange={onChange} />
   </InputWrapper>
 );
 
-const FormAddNaver = () => (
-  <>
+const FormAddNaver = () => {
+  let history = useHistory();
+  const [form, setForm] = React.useState({
+    job_role: "",
+    admission_date: "",
+    birthdate: "",
+    project: "",
+    name: "",
+    url: ""
+  });
+
+  const handleSubmit = () => {
+    createNaver(form)
+      .then(response => (response ? history.push("/home") : null))
+      .catch(e => console.log(e));
+  };
+
+  return (
     <Container>
       <InputsContainer>
-        <Input label={"Nome"} />
-        <Input label={"Cargo"} />
-        <Input label={"Idade"} />
-        <Input label={"Tempo de Empresa"} />
-        <Input label={"Projetos que participou"} />
-        <Input label={"URL da foto do Naver"} />
+        <Input
+          onChange={e => setForm({ ...form, name: e.target.value })}
+          label={"Nome"}
+        />
+        <Input
+          onChange={e => setForm({ ...form, job_role: e.target.value })}
+          label={"Cargo"}
+        />
+        <Input
+          onChange={e => setForm({ ...form, birthdate: e.target.value })}
+          label={"Idade"}
+        />
+        <Input
+          onChange={e => setForm({ ...form, admission_date: e.target.value })}
+          label={"Tempo de Empresa"}
+        />
+        <Input
+          onChange={e => setForm({ ...form, project: e.target.value })}
+          label={"Projetos que participou"}
+        />
+        <Input
+          onChange={e => setForm({ ...form, url: e.target.value })}
+          label={"URL da foto do Naver"}
+        />
       </InputsContainer>
       <ButtonContainer>
-        <ButtonSave>
-          {" "}
+        <ButtonSave onClick={handleSubmit}>
           <TextButton>Salvar</TextButton>
         </ButtonSave>
       </ButtonContainer>
     </Container>
-  </>
-);
+  );
+};
 
 export default FormAddNaver;

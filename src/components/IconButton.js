@@ -6,8 +6,8 @@ const IconContainer = styled.button`
   background: none;
   outline: none;
 `;
-const IconButton = ({ icon }) => (
-  <IconContainer>
+const IconButton = ({ icon, onClick }) => (
+  <IconContainer onClick={onClick}>
     <img src={icon} alt="icon" />
   </IconContainer>
 );

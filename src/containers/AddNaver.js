@@ -42,7 +42,7 @@ const AddNaver = () => (
     <Header />
     <Container>
       <BackIcon>
-        <img src={backIcon} />
+        <img src={backIcon} alt="back"/>
       </BackIcon>
       <Title>Adicionar Naver</Title>
       <FormAddNaver/>
