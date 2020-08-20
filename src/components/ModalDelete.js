@@ -18,7 +18,7 @@ const Title = styled.span`
   height: 36px;
   left: 32px;
   top: 32px;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -31,7 +31,7 @@ const Body = styled.span`
   position: absolute;
   left: 32px;
   top: 92px;
-  font-family: Montserrat;
+  font-family:'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -45,7 +45,7 @@ const GenericButton = styled.button`
   position: absolute;
   background: none;
   border: none;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;

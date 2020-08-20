@@ -17,7 +17,7 @@ const ImageContainer = styled.div`
   left: 32px;
 `;
 const ExitButton = styled.button`
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;

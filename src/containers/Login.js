@@ -43,7 +43,7 @@ const Text = styled.span`
   width: 60.34px;
   height: 18px;
   left: 32px;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -65,7 +65,7 @@ const EnterButton = styled.button`
   right: 32px;
   width: 384px;
   height: 40px;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;

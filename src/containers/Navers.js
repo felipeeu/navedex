@@ -16,7 +16,7 @@ const Title = styled.span`
   height: 48px;
   top: 0;
   left: 0;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 40px;
@@ -59,26 +59,28 @@ const Image = styled.img`
   height: 100%;
 `;
 const Name = styled.span`
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 18px;
   color: #212121;
+  padding-bottom: 2px;
 `;
 
 const JobRole = styled.span`
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   color: #212121;
+  padding-bottom: 2px;
 `;
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
+  padding: 20px;
 `;
 
 const Navers = ({ handleDelete, handleEdit, navers, setIsNaverSelected }) => {

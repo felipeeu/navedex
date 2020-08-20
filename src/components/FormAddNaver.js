@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import moment from "moment"
 
 const Container = styled.div`
   position: absolute;
@@ -18,7 +19,7 @@ const InputsContainer = styled.div`
   grid-row-gap: 32px;
 `;
 const InputLabel = styled.span`
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -43,7 +44,7 @@ const ButtonContainer = styled.div`
   top: 264px;
 `;
 const TextButton = styled.span`
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -64,8 +65,8 @@ const FormAddNaver = ({ handleSubmit, editForm, naverId, editing }) => {
   
   const [form, setForm] = React.useState({
     job_role: editing ? editForm.job_role : "",
-    admission_date: editing ? editForm.admission_date : "",
-    birthdate: editing ? editForm.birthdate : "",
+    admission_date: editing ? moment(editForm.admission_date).format("DD/MM/YYYY") : "",
+    birthdate: editing ? moment(editForm.birthdate).format("DD/MM/YYYY") : "",
     project: editing ? editForm.project : "",
     name: editing ? editForm.name : "",
     url: editing ? editForm.url : ""

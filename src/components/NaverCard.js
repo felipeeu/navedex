@@ -4,7 +4,9 @@ import IconButton from "./IconButton";
 import closeIcon from "../assets/images/close_icon.svg";
 import { Background } from "./ModalAdvise";
 import ButtonSet from "./ButtonSet";
-
+import moment from "moment";
+moment.langData("en")._relativeTime.yy = "%d anos";
+moment.langData("en")._relativeTime.past = "%s";
 const CardContainer = styled.div`
   position: absolute;
   width: 1006px;
@@ -21,7 +23,7 @@ const CardDivision = styled.div`
 `;
 
 const Name = styled.span`
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -31,7 +33,7 @@ const Name = styled.span`
   color: #000000;
 `;
 const Position = styled.span`
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -44,7 +46,7 @@ const DataContainer = styled.div`
   flex-direction: column;
 `;
 const Data = styled.span`
-  font-family: Montserrat;
+  font-family:Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -99,8 +101,11 @@ const NaverCard = ({
         <DataContainer>
           <Name>{naver.name}</Name>
           <Position>{naver.job_role}</Position>
-          <DataNaver data={"Idade"} info={naver.birthdate} />
-          <DataNaver data={"Tempo na Empresa"} info={naver.admission_date} />
+          <DataNaver data={"Idade"} info={moment(naver.birthdate).fromNow()} />
+          <DataNaver
+            data={"Tempo na Empresa"}
+            info={moment(naver.admission_date).fromNow()}
+          />
           <DataNaver data={"Projeto que participou"} info={naver.project} />
           <ButtonContainer>
             <ButtonSet

@@ -24,7 +24,7 @@ const Title = styled.span`
   left: 32px;
   top: 0;
 
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
