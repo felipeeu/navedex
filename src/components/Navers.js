@@ -40,7 +40,7 @@ const Container = styled.div`
   position: absolute;
   display: flex;
   flex-direction: row;
-  top: 205px;
+  top: 68px;
   width: 100%;
   height: 376px;
 `;

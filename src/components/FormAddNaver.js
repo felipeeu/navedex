@@ -60,14 +60,15 @@ const Input = ({ label, onChange, value }) => (
   </InputWrapper>
 );
 
-const FormAddNaver = ({ handleSubmit, editForm }) => {
+const FormAddNaver = ({ handleSubmit, editForm, naverId, editing }) => {
+  
   const [form, setForm] = React.useState({
-    job_role: editForm.job_role || "",
-    admission_date: editForm.admission_date || "",
-    birthdate: editForm.birthdate || "",
-    project: editForm.project || "",
-    name: editForm.name || "",
-    url: editForm.url || ""
+    job_role: editing ? editForm.job_role : "",
+    admission_date: editing ? editForm.admission_date : "",
+    birthdate: editing ? editForm.birthdate : "",
+    project: editing ? editForm.project : "",
+    name: editing ? editForm.name : "",
+    url: editing ? editForm.url : ""
   });
   console.log("FORMNAVER", editForm.name, "FORM", form);
   return (
@@ -105,7 +106,11 @@ const FormAddNaver = ({ handleSubmit, editForm }) => {
         />
       </InputsContainer>
       <ButtonContainer>
-        <ButtonSave onClick={() => handleSubmit(form)}>
+        <ButtonSave
+          onClick={() =>
+            editing ? handleSubmit(naverId, form) : handleSubmit(form)
+          }
+        >
           <TextButton>Salvar</TextButton>
         </ButtonSave>
       </ButtonContainer>

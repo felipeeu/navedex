@@ -12,12 +12,11 @@ const MajorContainer = styled.div`
   position: absolute;
   left: 32px;
   right: 32px;
-  top: 125px;
 `;
 
-const Home = () => {
+const Home = ({ naversData, setNaversData }) => {
   let history = useHistory();
-  const [naversData, setNaversData] = React.useState([]);
+
   const [modalOpen, setModalOpen] = React.useState(false);
   const [editForm, setEditForm] = React.useState({
     job_role: "",
@@ -27,19 +26,13 @@ const Home = () => {
     name: "",
     url: ""
   });
-  
+
   const [isAdvising, setIsAdvising] = React.useState({
     title: "",
     body: " ",
     advising: false
   });
   const [naverId, setNaverId] = React.useState("");
-
-  React.useEffect(() => {
-    getNavers()
-      .then(response => setNaversData(response.data))
-      .catch(e => console.log(e));
-  }, []);
 
   const confirmDelete = id => {
     setNaverId(id);
@@ -74,20 +67,24 @@ const Home = () => {
   };
 
   const handleEdit = (id, form) => {
-    // updateNaver(form)
-    //   .then(response => {
-    //     if (response) {
-    //       setIsAdvising({
-    //         title: "Naver editado",
-    //         body: "Naver editado com sucesso",
-    //         advising: true
-    //       });
-    //     }
-    //   })
-    //   .catch(e => console.log(e));
     setEditForm({ ...form });
 
     history.push(`/editnaver/${id}`);
+  };
+
+  const EditNaver = (id, form) => {
+    console.log("EDIT_NAVER: ", form);
+    updateNaver(id, form)
+      .then(response => {
+        if (response) {
+          setIsAdvising({
+            title: "Naver editado",
+            body: "Naver editado com sucesso",
+            advising: true
+          });
+        }
+      })
+      .catch(e => console.log(e));
   };
 
   return (
@@ -118,11 +115,19 @@ const Home = () => {
             <AddNaver
               editForm={editForm}
               title={"Editar Naver"}
-              handleSubmit={handleEdit}
+              handleSubmit={EditNaver}
+              naverId={naverId}
+              editing={true}
             />
           </Route>
           <Route exact path="/addnaver">
-            <AddNaver title={"Adicionar Naver"} handleSubmit={handleCreate} />
+            <AddNaver
+              editForm={editForm}
+              title={"Adicionar Naver"}
+              handleSubmit={handleCreate}
+              naverId={naverId}
+              editing={false}
+            />
           </Route>
         </Switch>
       </MajorContainer>

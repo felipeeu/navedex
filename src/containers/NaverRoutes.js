@@ -6,11 +6,21 @@ import {
   Redirect
 } from "react-router-dom";
 import Login from "./Login";
-import TestingPages from "../components/ModalDelete"; // Only for view components when creating
+import TestingPages from "../components/ModalAdvise"; // Only for view components when creating
 import Home from "./Home";
+import {getNavers} from "../naverAPI"
 
 
-export default function AuthExample() {
+
+export default function Auth() {
+
+  const [naversData, setNaversData] = React.useState([]);
+  React.useEffect(() => {
+    getNavers()
+      .then(response => setNaversData(response.data))
+      .catch(e => console.log(e));
+      
+  }, []);
   return (
     <Router>
       <div>
@@ -24,7 +34,7 @@ export default function AuthExample() {
             <Login />
           </Route>
           <PrivateRoute path="/">
-            <Home />
+            <Home naversData={naversData} setNaversData={setNaversData}/>
           </PrivateRoute>
         </Switch>
       </div>

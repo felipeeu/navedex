@@ -29,15 +29,12 @@ const Title = styled.span`
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
-  /* identical to box height, or 150% */
-
   display: flex;
   align-items: center;
-
   color: #212121;
 `;
 
-const AddNaver = ({title,handleSubmit , editForm}) => {
+const AddNaver = ({title,handleSubmit , editForm, naverId , editing}) => {
   let history = useHistory()
   return (
     <Container>
@@ -45,7 +42,7 @@ const AddNaver = ({title,handleSubmit , editForm}) => {
         <IconButton icon={backIcon} onClick={() => history.push("/")} />
       </BackIcon>
       <Title>{title}</Title>
-      <FormAddNaver editForm ={editForm}  handleSubmit={handleSubmit}/>
+      <FormAddNaver editForm ={editForm}  handleSubmit={handleSubmit}  naverId={naverId} editing = {editing}/>
     </Container>
   );
 };
