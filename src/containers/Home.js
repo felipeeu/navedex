@@ -110,7 +110,6 @@ const Home = ({ naversData, setNaversData }) => {
         <ModalAdvise isAdvising={isAdvising} setIsAdvising={setIsAdvising} />
       ) : naverSelected.selected ? (
         <NaverCard
-          history={history}
           naver={naverSelected.payload}
           naverSelected={naverSelected}
           setIsNaverSelected={setIsNaverSelected}
