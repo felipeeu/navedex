@@ -26,7 +26,7 @@ const Title = styled.span`
   height: 36px;
   left: 32px;
   top: 32px;
-  font-family:Montserrat, sans-serif;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;

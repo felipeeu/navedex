@@ -6,35 +6,25 @@ import {
   Redirect
 } from "react-router-dom";
 import Login from "./Login";
-import TestingPages from "../components/ModalAdvise"; // Only for view components when creating
 import Home from "./Home";
-import {getNavers} from "../naverAPI"
-
-
+import { getNavers } from "../naverAPI";
 
 export default function Auth() {
-
   const [naversData, setNaversData] = React.useState([]);
   React.useEffect(() => {
     getNavers()
       .then(response => setNaversData(response.data))
       .catch(e => console.log(e));
-      
   }, []);
   return (
     <Router>
       <div>
         <Switch>
-          <Route path="/test">
-            <TestingPages
-              navers={[{ name: "Felipe Domingues" }, { name: "Manuela" }]}
-            />
-          </Route>
           <Route path="/login">
             <Login />
           </Route>
           <PrivateRoute path="/">
-            <Home naversData={naversData} setNaversData={setNaversData}/>
+            <Home naversData={naversData} setNaversData={setNaversData} />
           </PrivateRoute>
         </Switch>
       </div>

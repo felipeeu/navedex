@@ -31,7 +31,7 @@ const Body = styled.span`
   position: absolute;
   left: 32px;
   top: 92px;
-  font-family:'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -79,7 +79,7 @@ const ModalDelete = ({ setModalOpen, naverId, handleDelete }) => (
       <DeleteButton onClick={() => handleDelete(naverId)}>Excluir</DeleteButton>
       <CancelButton onClick={() => setModalOpen(false)}>Cancelar</CancelButton>
     </ModalContainer>
-   </Background>
+  </Background>
 );
 
 export default ModalDelete;

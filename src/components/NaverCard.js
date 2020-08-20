@@ -46,7 +46,7 @@ const DataContainer = styled.div`
   flex-direction: column;
 `;
 const Data = styled.span`
-  font-family:Montserrat, sans-serif;
+  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
