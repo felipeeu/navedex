@@ -9,13 +9,16 @@ import Login from "./Login";
 import TestingPages from "../components/ModalDelete"; // Only for view components when creating
 import Home from "./Home";
 
+
 export default function AuthExample() {
   return (
     <Router>
       <div>
         <Switch>
           <Route path="/test">
-            <TestingPages navers = { [{name:"Felipe Domingues"} , {name: "Manuela"}]} /> 
+            <TestingPages
+              navers={[{ name: "Felipe Domingues" }, { name: "Manuela" }]}
+            />
           </Route>
           <Route path="/login">
             <Login />

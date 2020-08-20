@@ -1,7 +1,41 @@
 import React from "react";
 import styled from "styled-components";
 import ButtonSet from "./ButtonSet";
+import { useHistory } from "react-router-dom";
 
+const MajorContainer = styled.div`
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  top: 125px;
+`;
+
+const Title = styled.span`
+  position: absolute;
+  width: 141px;
+  height: 48px;
+  top: 0;
+  left: 0;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 48px;
+  display: flex;
+  align-items: center;
+
+  color: #212121;
+`;
+
+const CreateNaverButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 176px;
+  height: 40px;
+  background: #212121;
+  color: #ffffff;
+`;
 const Container = styled.div`
   position: absolute;
   display: flex;
@@ -48,27 +82,34 @@ const InfoContainer = styled.div`
 `;
 
 const Navers = ({ handleDelete, handleEdit, navers }) => {
+  let history = useHistory();
   return (
-    <Container>
-      {navers &&
-        navers.map((naver, idx) => (
-          <Card key={idx}>
-            <ImageContainer>
-              <Image src={naver.url} />
-            </ImageContainer>
+    <MajorContainer>
+      <Title>Navers</Title>
+      <CreateNaverButton onClick={()=>history.push("/addnaver")}>
+        Adicionar Naver
+      </CreateNaverButton>
+      <Container>
+        {navers &&
+          navers.map((naver, idx) => (
+            <Card key={idx}>
+              <ImageContainer>
+                <Image src={naver.url} />
+              </ImageContainer>
 
-            <InfoContainer>
-              <Name> {naver.name}</Name>
-              <JobRole>{naver.job_role}</JobRole>
-              <ButtonSet
-                naverId={naver.id}
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-              />
-            </InfoContainer>
-          </Card>
-        ))}
-    </Container>
+              <InfoContainer>
+                <Name> {naver.name}</Name>
+                <JobRole>{naver.job_role}</JobRole>
+                <ButtonSet
+                  naverId={naver.id}
+                  handleDelete={handleDelete}
+                  handleEdit={()=>history.push("/editnaver")}
+                />
+              </InfoContainer>
+            </Card>
+          ))}
+      </Container>
+    </MajorContainer>
   );
 };
 

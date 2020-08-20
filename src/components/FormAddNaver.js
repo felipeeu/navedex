@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { createNaver } from "../naverAPI";
-import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   position: absolute;
@@ -62,8 +60,7 @@ const Input = ({ label, onChange }) => (
   </InputWrapper>
 );
 
-const FormAddNaver = () => {
-  let history = useHistory();
+const FormAddNaver = ({ handleSubmit }) => {
   const [form, setForm] = React.useState({
     job_role: "",
     admission_date: "",
@@ -72,12 +69,6 @@ const FormAddNaver = () => {
     name: "",
     url: ""
   });
-
-  const handleSubmit = () => {
-    createNaver(form)
-      .then(response => (response ? history.push("/home") : null))
-      .catch(e => console.log(e));
-  };
 
   return (
     <Container>
@@ -92,7 +83,7 @@ const FormAddNaver = () => {
         />
         <Input
           onChange={e => setForm({ ...form, birthdate: e.target.value })}
-          label={"Idade"}
+          label={"Data de Nascimento"}
         />
         <Input
           onChange={e => setForm({ ...form, admission_date: e.target.value })}
@@ -108,7 +99,7 @@ const FormAddNaver = () => {
         />
       </InputsContainer>
       <ButtonContainer>
-        <ButtonSave onClick={handleSubmit}>
+        <ButtonSave onClick={() => handleSubmit(form)}>
           <TextButton>Salvar</TextButton>
         </ButtonSave>
       </ButtonContainer>

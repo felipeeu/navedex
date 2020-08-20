@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import backIcon from "../assets/images/back_icon.svg";
-import Header from "../components/Header";
-import FormAddNaver from "../components/FormAddNaver"
+import FormAddNaver from "../components/FormAddNaver";
+import IconButton from "../components/IconButton";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   position: absolute;
@@ -10,7 +11,6 @@ const Container = styled.div`
   left: 344px;
   right: 344px;
   bottom: 277px;
-
 `;
 const BackIcon = styled.div`
   position: absolute;
@@ -37,17 +37,17 @@ const Title = styled.span`
   color: #212121;
 `;
 
-const AddNaver = () => (
-  <>
-    <Header />
+const AddNaver = ({title,handleSubmit}) => {
+  let history = useHistory()
+  return (
     <Container>
       <BackIcon>
-        <img src={backIcon} alt="back"/>
+        <IconButton icon={backIcon} onClick={() => history.push("/")} />
       </BackIcon>
-      <Title>Adicionar Naver</Title>
-      <FormAddNaver/>
+      <Title>{title}</Title>
+      <FormAddNaver  handleSubmit={handleSubmit}/>
     </Container>
-  </>
-);
+  );
+};
 
 export default AddNaver;

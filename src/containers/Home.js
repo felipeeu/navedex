@@ -1,47 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import Navers from "../components/Navers";
-import { getNavers, deleteNaver, updateNaver } from "../naverAPI";
+import AddNaver from "./AddNaver";
+import { getNavers, deleteNaver, updateNaver, createNaver } from "../naverAPI";
 import Header from "../components/Header";
 import ModalDelete from "../components/ModalDelete";
+import ModalAdvise from "../components/ModalAdvise";
+import { Switch, Route, useHistory } from "react-router-dom";
 
-const Title = styled.span`
-  position: absolute;
-  width: 141px;
-  height: 48px;
-  top: 0;
-  left: 0;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 48px;
-  display: flex;
-  align-items: center;
-
-  color: #212121;
-`;
-
-const CreateNaverButton = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-`;
 const MajorContainer = styled.div`
   position: absolute;
   left: 32px;
   right: 32px;
   top: 125px;
-  background-color: yellow;
-`;
-const NaversContainer = styled.div`
-  position: absolute;
-  top: 80px;
 `;
 
 const Home = () => {
+  let history = useHistory();
   const [naversData, setNaversData] = React.useState([]);
   const [modalOpen, setModalOpen] = React.useState(false);
+  const [isAdvising, setIsAdvising] = React.useState({
+    title: "",
+    body: " ",
+    advising: false
+  });
   const [naverId, setNaverId] = React.useState("");
 
   React.useEffect(() => {
@@ -64,6 +46,39 @@ const Home = () => {
     setModalOpen(false);
   };
 
+  const handleCreate = form => {
+    let newNaverData = naversData.concat(form);
+    createNaver(form)
+      .then(response => {
+        if (response) {
+          setNaversData(newNaverData);
+          setIsAdvising({
+            title: "Naver criado",
+            body: "Naver criado com sucesso",
+            advising: true
+          });
+        }
+      })
+      .catch(e => console.log(e));
+
+    history.push("/");
+  };
+
+  const handleEdit = form => {
+    updateNaver(form)
+      .then(response => {
+        if (response) {
+          setIsAdvising({
+            title: "Naver editado",
+            body: "Naver editado com sucesso",
+            advising: true
+          });
+        }
+      })
+      .catch(e => console.log(e));
+    history.push("/");
+  };
+
   return (
     <>
       <Header />
@@ -74,15 +89,27 @@ const Home = () => {
           handleDelete={deleteConfirmed}
           naverId={naverId}
         />
+      ) : isAdvising.advising ? (
+        <ModalAdvise
+          isAdvising={isAdvising}
+          setIsAdvising={setIsAdvising}
+         
+        />
       ) : (
         <></>
       )}
       <MajorContainer>
-        <Title>Navers</Title>
-        <CreateNaverButton>Adicionar Naver</CreateNaverButton>
-        <NaversContainer>
-          <Navers handleDelete={confirmDelete} navers={naversData} />
-        </NaversContainer>
+        <Switch>
+          <Route exact path="/">
+            <Navers handleDelete={confirmDelete} navers={naversData} />
+          </Route>
+          <Route exact path="/editnaver">
+            <AddNaver title={"Editar Naver"} handleSubmit={handleEdit} />
+          </Route>
+          <Route exact path="/addnaver">
+            <AddNaver title={"Adicionar Naver"} handleSubmit={handleCreate} />
+          </Route>
+        </Switch>
       </MajorContainer>
     </>
   );

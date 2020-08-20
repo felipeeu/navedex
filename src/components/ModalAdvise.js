@@ -42,13 +42,16 @@ const Body = styled.span`
   color: #212121;
 `;
 
-const ModalAdvise = ({ text, body }) => (
+const ModalAdvise = ({ isAdvising, setIsAdvising }) => (
   <ModalContainer>
     <CloseIcon>
-      <IconButton icon={closeIcon} />
+      <IconButton
+        onClick={() => setIsAdvising({ ...isAdvising, advising: false })}
+        icon={closeIcon}
+      />
     </CloseIcon>
-    <Title>Naver Criado</Title>
-    <Body>Naver criado com sucesso!</Body>
+    <Title>{isAdvising.title}</Title>
+    <Body>{isAdvising.body}</Body>
   </ModalContainer>
 );
 
