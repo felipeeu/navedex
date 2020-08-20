@@ -102,8 +102,9 @@ const Navers = ({ handleDelete, handleEdit, navers }) => {
                 <JobRole>{naver.job_role}</JobRole>
                 <ButtonSet
                   naverId={naver.id}
+                  editParams= {naver}
                   handleDelete={handleDelete}
-                  handleEdit={()=>history.push("/editnaver")}
+                  handleEdit={handleEdit}
                 />
               </InfoContainer>
             </Card>

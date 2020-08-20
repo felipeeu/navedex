@@ -9,10 +9,10 @@ const Container = styled.div`
   flex-direction: row;
 `;
 
-const ButtonSet = ({ handleDelete, handleEdit, naverId }) => (
+const ButtonSet = ({ handleDelete, handleEdit, naverId , editParams }) => (
   <Container>
     <IconButton onClick={() => handleDelete(naverId)} icon={deleteButton} />
-    <IconButton onClick={handleEdit} icon={editButton} />
+    <IconButton onClick={() =>handleEdit(naverId, editParams)} icon={editButton} />
   </Container>
 );
 

@@ -37,7 +37,7 @@ const Title = styled.span`
   color: #212121;
 `;
 
-const AddNaver = ({title,handleSubmit}) => {
+const AddNaver = ({title,handleSubmit , editForm}) => {
   let history = useHistory()
   return (
     <Container>
@@ -45,7 +45,7 @@ const AddNaver = ({title,handleSubmit}) => {
         <IconButton icon={backIcon} onClick={() => history.push("/")} />
       </BackIcon>
       <Title>{title}</Title>
-      <FormAddNaver  handleSubmit={handleSubmit}/>
+      <FormAddNaver editForm ={editForm}  handleSubmit={handleSubmit}/>
     </Container>
   );
 };

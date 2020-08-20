@@ -53,49 +53,55 @@ const TextButton = styled.span`
   color: #ffffff;
 `;
 
-const Input = ({ label, onChange }) => (
+const Input = ({ label, onChange, value }) => (
   <InputWrapper>
     <InputLabel>{label}</InputLabel>
-    <CurrentInput onChange={onChange} />
+    <CurrentInput value={value} onChange={onChange} />
   </InputWrapper>
 );
 
-const FormAddNaver = ({ handleSubmit }) => {
+const FormAddNaver = ({ handleSubmit, editForm }) => {
   const [form, setForm] = React.useState({
-    job_role: "",
-    admission_date: "",
-    birthdate: "",
-    project: "",
-    name: "",
-    url: ""
+    job_role: editForm.job_role || "",
+    admission_date: editForm.admission_date || "",
+    birthdate: editForm.birthdate || "",
+    project: editForm.project || "",
+    name: editForm.name || "",
+    url: editForm.url || ""
   });
-
+  console.log("FORMNAVER", editForm.name, "FORM", form);
   return (
     <Container>
       <InputsContainer>
         <Input
           onChange={e => setForm({ ...form, name: e.target.value })}
           label={"Nome"}
+          value={form.name}
         />
         <Input
           onChange={e => setForm({ ...form, job_role: e.target.value })}
           label={"Cargo"}
+          value={form.job_role}
         />
         <Input
           onChange={e => setForm({ ...form, birthdate: e.target.value })}
           label={"Data de Nascimento"}
+          value={form.birthdate}
         />
         <Input
           onChange={e => setForm({ ...form, admission_date: e.target.value })}
-          label={"Tempo de Empresa"}
+          label={"Data de admissão"}
+          value={form.admission_date}
         />
         <Input
           onChange={e => setForm({ ...form, project: e.target.value })}
           label={"Projetos que participou"}
+          value={form.project}
         />
         <Input
           onChange={e => setForm({ ...form, url: e.target.value })}
           label={"URL da foto do Naver"}
+          value={form.url}
         />
       </InputsContainer>
       <ButtonContainer>
