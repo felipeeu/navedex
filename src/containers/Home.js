@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Navers from "../components/Navers";
+import Navers from "./Navers";
 import AddNaver from "./AddNaver";
-import { getNavers, deleteNaver, updateNaver, createNaver } from "../naverAPI";
+import NaverCard from "../components/NaverCard";
+import { deleteNaver, updateNaver, createNaver } from "../naverAPI";
 import Header from "../components/Header";
 import ModalDelete from "../components/ModalDelete";
 import ModalAdvise from "../components/ModalAdvise";
@@ -18,6 +19,7 @@ const Home = ({ naversData, setNaversData }) => {
   let history = useHistory();
 
   const [modalOpen, setModalOpen] = React.useState(false);
+
   const [editForm, setEditForm] = React.useState({
     job_role: "",
     admission_date: "",
@@ -26,7 +28,10 @@ const Home = ({ naversData, setNaversData }) => {
     name: "",
     url: ""
   });
-
+  const [naverSelected, setIsNaverSelected] = React.useState({
+    payload: { ...editForm },
+    selected: false
+  });
   const [isAdvising, setIsAdvising] = React.useState({
     title: "",
     body: " ",
@@ -46,6 +51,11 @@ const Home = ({ naversData, setNaversData }) => {
       response ? setNaversData(filteredNavers) : setNaversData(naversData)
     );
     setModalOpen(false);
+    setIsAdvising({
+      title: "Naver removido",
+      body: "Naver removido com sucesso",
+      advising: true
+    });
   };
 
   const handleCreate = form => {
@@ -68,12 +78,11 @@ const Home = ({ naversData, setNaversData }) => {
 
   const handleEdit = (id, form) => {
     setEditForm({ ...form });
-
+    setIsNaverSelected({ ...naverSelected, selected: false });
     history.push(`/editnaver/${id}`);
   };
 
   const EditNaver = (id, form) => {
-    console.log("EDIT_NAVER: ", form);
     updateNaver(id, form)
       .then(response => {
         if (response) {
@@ -99,6 +108,15 @@ const Home = ({ naversData, setNaversData }) => {
         />
       ) : isAdvising.advising ? (
         <ModalAdvise isAdvising={isAdvising} setIsAdvising={setIsAdvising} />
+      ) : naverSelected.selected ? (
+        <NaverCard
+          history={history}
+          naver={naverSelected.payload}
+          naverSelected={naverSelected}
+          setIsNaverSelected={setIsNaverSelected}
+          handleDelete={confirmDelete}
+          handleEdit={handleEdit}
+        />
       ) : (
         <></>
       )}
@@ -109,8 +127,10 @@ const Home = ({ naversData, setNaversData }) => {
               handleDelete={confirmDelete}
               navers={naversData}
               handleEdit={handleEdit}
+              setIsNaverSelected={setIsNaverSelected}
             />
           </Route>
+
           <Route exact path="/editnaver/:id">
             <AddNaver
               editForm={editForm}

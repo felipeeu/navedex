@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ButtonSet from "./ButtonSet";
+import ButtonSet from "../components/ButtonSet";
 import { useHistory } from "react-router-dom";
 
 const MajorContainer = styled.div`
@@ -81,19 +81,23 @@ const InfoContainer = styled.div`
   padding-left: 10px;
 `;
 
-const Navers = ({ handleDelete, handleEdit, navers }) => {
+const Navers = ({ handleDelete, handleEdit, navers, setIsNaverSelected }) => {
   let history = useHistory();
   return (
     <MajorContainer>
       <Title>Navers</Title>
-      <CreateNaverButton onClick={()=>history.push("/addnaver")}>
+      <CreateNaverButton onClick={() => history.push("/addnaver")}>
         Adicionar Naver
       </CreateNaverButton>
       <Container>
         {navers &&
           navers.map((naver, idx) => (
             <Card key={idx}>
-              <ImageContainer>
+              <ImageContainer
+                onClick={() =>
+                  setIsNaverSelected({ payload: naver, selected: true })
+                }
+              >
                 <Image src={naver.url} />
               </ImageContainer>
 
@@ -102,7 +106,7 @@ const Navers = ({ handleDelete, handleEdit, navers }) => {
                 <JobRole>{naver.job_role}</JobRole>
                 <ButtonSet
                   naverId={naver.id}
-                  editParams= {naver}
+                  editParams={naver}
                   handleDelete={handleDelete}
                   handleEdit={handleEdit}
                 />

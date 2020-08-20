@@ -79,7 +79,7 @@ const ModalDelete = ({ setModalOpen, naverId, handleDelete }) => (
       <DeleteButton onClick={() => handleDelete(naverId)}>Excluir</DeleteButton>
       <CancelButton onClick={() => setModalOpen(false)}>Cancelar</CancelButton>
     </ModalContainer>
-  </Background>
+   </Background>
 );
 
 export default ModalDelete;

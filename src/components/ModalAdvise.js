@@ -5,6 +5,8 @@ import IconButton from "../components/IconButton";
 import { CloseIcon } from "./NaverCard";
 
 export const Background = styled.div`
+  z-index: 100000;
+  position: absolute;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
@@ -20,7 +22,7 @@ const ModalContainer = styled.div`
 `;
 const Title = styled.span`
   position: absolute;
-  width: 157px;
+  width: auto;
   height: 36px;
   left: 32px;
   top: 32px;
