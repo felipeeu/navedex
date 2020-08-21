@@ -1,8 +1,6 @@
 # Navedex Project - A challenge for nave.rs
 This is a project for a front-end challenge for navers. The application is a dex for nave crew .
 
-# Link to project
-https://felipeeu.github.io/navedex/
 
 # Setup on Terminal for Run Project Locally (fron-tend)
 ```terminal
