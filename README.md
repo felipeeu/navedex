@@ -1,36 +1,42 @@
-## Navedex App
-This project is a challenge for Nave.rs  
+# Navedex Project - A challenge for nave.rs
+This is a project for a front-end challenge for navers. The application is a dex for nave crew .
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+# Link to project
+https://felipeeu.github.io/navedex/
 
-## Setup on Terminal and Run Project Locally
+# Setup on Terminal for Run Project Locally (fron-tend)
 ```terminal
-git clone https://github.com/felipeeu/navedex.git 
+git clone https://github.com/felipeeu/navedex.git
 cd navedex
 yarn install
 yarn start
 ```
 
 
-## Technologies Used
-* JavaScript
-* [ReactJS](https://reactjs.org/)
-* [Styled Components](https://styled-components.com/)
-* [React Router DOM](https://reactrouter.com/)
-* [Axios](https://github.com/axios/axios)
-* [Moment.js](https://momentjs.com/)
+
+### Tech
+
+Navedex uses some technologies to work properly:
+| Tech | Description |Documentation|
+| ------ | ------ |------|
+| ReactJS | a JavaScript library for building user interfaces|https://reactjs.org/|
+| Styled Components | to write actual CSS code to style components|https://styled-components.com/|
+| Axios | promise based HTTP client for the browser and node.js|https://github.com/axios/axios|
+| Moment.js | to manipulate time data|https://momentjs.com/|
+| React Router Dom |Declarative routing for React|https://reactrouter.com/web/guides/quick-start|
+| Gh pages | to deploy front-end|https://github.com/tschaub/gh-pages|
 
 
-## APIs Used
-* [NaveAPI](https://navedex-api.herokuapp.com/v1/)   
 
 
 
-## License
+# Backend API
+  
+ [NaveAPI](https://navedex-api.herokuapp.com/v1/)
 
-The code in this project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
-Note that you will be responsible for following terms of service of the third party APIs used in the code. 
+## Create React App
 
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 
